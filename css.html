@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Original</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="08 - selectores.css">
+	<script src="modernizr-custom.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<header>
+		<div class="contenido-principal">
+			<h2 title="main cabecera otro">Titulo secundario en cabecera</h2>
+		</div>
+		<p>
+			1. El Porcentaje (%): ¿Unidad o Factor?
+Existe un debate semántico sobre si el % es una unidad independiente. Técnicamente, en CSS, el porcentaje es un factor de escala.
+
+Comportamiento: Siempre hereda su valor de otra propiedad.
+
+Si lo usas en width, se refiere al ancho del elemento padre.
+
+Si lo usas en font-size, se refiere al tamaño de fuente del elemento padre.
+
+Diferencia clave: A diferencia de em o rem, el porcentaje es estrictamente relativo al contenedor inmediato (en dimensiones) o al valor heredado (en tipografía).
+
+2. Diferencias Reales: em vs. rem vs. ex
+Esta es la parte donde muchos desarrolladores se confunden. La clave está en qué usan como base para el cálculo.
+
+rem (Root em)
+Es la unidad más segura y predecible.
+
+Referencia: Se basa exclusivamente en el tamaño de fuente del elemento raíz (<html>).
+
+Cálculo: Por defecto, la mayoría de los navegadores tienen 1rem = 16px.
+
+Uso ideal: Para el layout general, márgenes y tamaños de fuente globales, ya que mantiene la consistencia en toda la página.
+
+em
+Es una unidad relativa al contexto local.
+
+Referencia: Se basa en el tamaño de fuente del propio elemento (o del padre si el elemento no tiene uno definido).
+
+El problema del "Efecto Cascada": Si tienes elementos anidados con em, el tamaño se multiplica.
+
+Ejemplo: Un div con 0.5em dentro de otro div de 0.5em resultará en un texto de un cuarto del tamaño original.
+
+Uso ideal: Para componentes específicos donde quieres que el padding o el margen escalen proporcionalmente al texto de ese componente (como un botón).
+
+ex
+Es una unidad poco común pero muy técnica y útil en tipografía avanzada.
+
+Referencia: Se basa en la altura de la letra "x" minúscula (la altura de x o x-height) de la fuente actual.
+
+Cálculo: No es fijo. Si cambias de tipografía (de Arial a Times New Roman), el valor de 1ex cambiará aunque el font-size sea el mismo, porque cada fuente tiene proporciones distintas.
+
+Uso ideal: Cuando necesitas que un elemento gráfico (como un icono o una línea) esté perfectamente alineado con la "panza" de las letras minúsculas.
+		</p>
+	</header>
+
+	<section>
+		<h2 lang="es-MX" class="grande">Titulo Secundario 2</h2>
+		<h2 title="otro">Titulo Secundario</h2>
+		<h2 lang="es-ES">Titulo Terciario</h2>
+<button>
+  <span class="text">Button</span>
+</button>
+
+	<p>Texto de prueba</p>
+	<p>Texto de prueba</p>
+	<p id="azul">Texto de prueba</p>
+	<p>Texto de prueba</p>
+	<p>Texto de prueba</p>
+
+	<p class="prueba grande">Texto con clase</p>
+	<p class="prueba">Texto con clase</p>
+	</section>
+
+	<div>
+		<article>
+			<p class="prueba grande">Texto con clase</p>
+			<p class="rojo naranja" id="grisaceo">Texto con clase</p>
+			<p class="prueba">Texto con clase</p>
+		</article>
+	</div>
+	<p>Hola</p>
+	<span class="azul">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+	<p>El modelo de caja en CSS es el sistema que define a cada elemento de una web como una estructura rectangular compuesta por cuatro capas concéntricas: el contenido (texto o imágenes), el padding (espacio interno transparente), el borde (la línea que rodea al padding) y el margen (el espacio externo que separa la caja de otros elementos). La clave para entenderlo es la propiedad box-sizing, ya que por defecto (content-box) el padding y el borde se suman al ancho que tú defines, haciendo que la caja crezca más de lo esperado; en cambio, con border-box, el navegador ajusta el contenido para que el padding y el borde queden dentro del ancho total definido, logrando un diseño mucho más preciso y predecible.</p>
+	<p>
+		1. p + p (Selector de hermano adyacente): Selecciona todos los elementos <p> que aparecen inmediatamente después de otro <p>. En tu HTML, esto afectaría a los párrafos de la sección de "Texto de prueba", excepto al primero de la lista.
+
+2. div + p (Selector de hermano adyacente): Selecciona el párrafo <p> que esté justo después de un <div>. En tu código, seleccionaría el párrafo que dice "Hola", ya que está inmediatamente después del cierre del último <div>.
+
+3. div > p (Selector de hijo directo): Selecciona los párrafos que son hijos directos de un <div>. Ojo: En tu HTML actual, los párrafos dentro del último <div> están dentro de un <article>, por lo que este selector no los tocaría (tendrías que usar div article > p o div p).
+
+4. p#azul (Selector de ID): Selecciona específicamente el párrafo que tiene el atributo id="azul". Es el método más preciso para un solo elemento.
+
+5. p ~ p (Selector de hermanos generales): Selecciona todos los párrafos que sean hermanos de un párrafo anterior, sin importar si hay otros elementos en medio. A diferencia de +, este selecciona todos los que sigan, no solo el siguiente.
+
+6. h2[title ~= "otro"] (Selector de atributo de lista): Selecciona los <h2> cuyo atributo title contenga la palabra "otro" dentro de una lista de palabras separadas por espacios. Seleccionaría tanto al primer <h2> ("main cabecera otro") como al que solo dice "otro".
+
+7. h2[lang |= "es"] (Selector de subcódigo de idioma): Selecciona los <h2> cuyo atributo lang sea exactamente "es" o que comience con "es-". En tu código, seleccionaría tanto el de lang="es-MX" como el de lang="es-ES".
+
+8. Cómo localizar elementos con atributo "title" (sin importar valor): Se logra usando el selector de atributo simple: [title]. Si quieres ser específico para cualquier etiqueta que lo tenga, simplemente escribes:
+	</p>
+</body>
+</html>
